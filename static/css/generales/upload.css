@@ -1,0 +1,143 @@
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card {
+  background: #111;
+  border: 2px solid #8c52ff;
+  border-radius: 1.25rem;
+  box-shadow: 0 0 20px rgba(140, 82, 255, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(140, 82, 255, 0.5);
+}
+
+.btn-twis {
+  background-color: #8c52ff;
+  border-bottom: 4px solid #6b3bcc;
+  color: #fff;
+  transition: all 0.2s ease;
+  border-radius: 10px;
+  padding: 0.6rem 1.5rem;
+}
+.btn-twis:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+  border-bottom-width: 6px;
+}
+.btn-twis:active {
+  filter: brightness(0.9);
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+}
+.btn-twis:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ✨ Animación de brillo */
+@keyframes shine {
+  0% { filter: drop-shadow(0 0 3px #ffca30) brightness(1); }
+  50% { filter: drop-shadow(0 0 10px #ffca30) brightness(1.3); }
+  100% { filter: drop-shadow(0 0 3px #ffca30) brightness(1); }
+}
+.shine {
+  animation: shine 2.5s infinite ease-in-out;
+}
+
+/* 💫 Animaciones de entrada y salida */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+}
+
+/* 🧩 Grupo (por ejemplo “Ítem 1”) */
+.group-card {
+  background: rgba(20, 20, 20, 0.7);
+  border: 1.5px solid rgba(140, 82, 255, 0.5);
+  border-radius: 1rem;
+  box-shadow: 0 0 10px rgba(140, 82, 255, 0.25);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.35s ease-out;
+  transition: all 0.3s ease;
+}
+.group-card.removing {
+  animation: fadeOutDown 0.25s ease-in forwards;
+}
+.group-card:hover {
+  box-shadow: 0 0 20px rgba(140, 82, 255, 0.4);
+}
+
+/* 🔑 Campos dentro del grupo */
+.fields input {
+  width: 100%;
+  font-size: 0.95rem;
+  border: none;
+  border-bottom: 1.5px solid #8c52ff;
+  background: transparent;
+  color: #fff;
+  padding: 6px 8px;
+  outline: none;
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+.fields input:focus {
+  border-color: #ffca30;
+  transform: scale(1.02);
+}
+
+/* 🗑️ Botones de borrar */
+.delete-field, .delete-group {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.delete-field:hover, .delete-group:hover {
+  transform: scale(1.15);
+  color: #ff6961 !important;
+}
+
+/* 💎 Animación suave de aparición de campos */
+.fields > div {
+  animation: fadeInUp 0.3s ease;
+}
+
+/* 📜 Vista previa JSON */
+#jsonOutput {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(140, 82, 255, 0.5);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  color: #e5e5e5;
+  max-height: 250px;
+  overflow-y: auto;
+  transition: all 0.3s ease;
+}
+#jsonOutput:hover {
+  box-shadow: 0 0 10px rgba(140, 82, 255, 0.3);
+}
+
+/* 📦 Espaciado general */
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}

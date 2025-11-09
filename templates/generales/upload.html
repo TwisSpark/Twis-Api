@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Twis API — Crear JSON</title>
+
+  <!-- Tailwind (opcional) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        crossorigin="anonymous" />
+
+  <!-- ===== CSS ===== -->
+  <style>
+    * { box-sizing: border-box; }
+    html,body { height:100%; }
+    body {
+      background: radial-gradient(circle at top, #0a0015 0%, #000 80%);
+      color:#fff;
+      font-family: "Poppins", sans-serif;
+      margin:0;
+      padding:32px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .card {
+      margin: 0 auto;
+      max-width: 980px;
+      width: 100%;
+      background: rgba(17,17,17,0.9);
+      border: 2px solid rgba(140,82,255,0.6);
+      border-radius: 1rem;
+      padding: 28px;
+      box-shadow: 0 8px 40px rgba(140,82,255,0.12);
+    }
+
+    .title-row { display:flex; gap:12px; align-items:center; justify-content:center; flex-direction:column; }
+    .title-row h1 { margin:0; font-size:1.6rem; font-weight:700; text-align:center; color:#fff; }
+    .subtitle { color:rgba(255,255,255,0.68); font-size:0.95rem; text-align:center; margin-top:6px; }
+
+    .btn-twis {
+      background-color: #8c52ff;
+      border-bottom: 4px solid #6b3bcc;
+      color: #fff;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      font-weight:600;
+      cursor: pointer;
+      display: inline-flex;
+      gap:8px;
+      align-items:center;
+      justify-content:center;
+      transition: all 0.2s ease;
+    }
+    .btn-twis:hover { filter:brightness(1.12); transform:translateY(-2px); }
+    .btn-twis:active { transform:translateY(2px); border-bottom-width:2px; }
+
+    .group, .group-container {
+      background: rgba(18,12,30,0.45);
+      border: 1px solid rgba(140,82,255,0.25);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+      transition: all .32s ease;
+      will-change: opacity, transform;
+    }
+    .group.fade-out, .group-container.fade-out { opacity:0; transform: scale(.98); filter: blur(2px); }
+
+    .group-header {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      width:100%;
+    }
+    .group-header .label {
+      color:#ffca30;
+      font-weight:600;
+      white-space:nowrap;
+      margin-right:6px;
+    }
+    .group-header .group-name {
+      flex:1 1 auto;
+      min-width:0;
+      background:transparent;
+      border:none;
+      border-bottom:1px solid rgba(140,82,255,0.28);
+      padding:8px 10px;
+      color:#fff;
+      font-size:0.95rem;
+    }
+    .group-header .group-name:focus { outline:none; border-color:#ffca30; box-shadow:0 2px 10px rgba(255,202,48,0.08); }
+
+    .remove-group {
+      flex:0 0 auto;
+      background: rgba(255,107,107,0.06);
+      border: 1px solid rgba(255,107,107,0.12);
+      color: #ff6b6b;
+      padding:6px 8px;
+      border-radius:6px;
+      cursor:pointer;
+    }
+    .remove-group:hover { background: rgba(255,107,107,0.14); transform:scale(1.04); }
+
+    .fields { margin-top:12px; display:flex; flex-direction:column; gap:10px; }
+
+    .field {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(122,63,255,0.14);
+      padding:10px;
+      border-radius:10px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .field input[type="text"] {
+      width:100%;
+      min-width:0;
+      background:transparent;
+      color:#fff;
+      border:none;
+      border-bottom:1px solid rgba(140,82,255,0.28);
+      padding:8px 6px;
+      font-size:0.95rem;
+    }
+    .field input[type="text"]:focus { outline:none; border-color:#ffca30; box-shadow:0 4px 14px rgba(255,202,48,0.06); }
+
+    .field-actions { display:flex; justify-content:flex-end; }
+
+    .remove-field {
+      background:none;
+      border:none;
+      color:#ff7b7b;
+      cursor:pointer;
+      padding:6px;
+      border-radius:6px;
+    }
+    .remove-field:hover { transform:scale(1.08); color:#ff4040; }
+
+    #jsonOutput {
+      background: rgba(0,0,0,0.6);
+      border:1px solid rgba(140,82,255,0.22);
+      padding:12px;
+      border-radius:8px;
+      color:#dcdcdc;
+      max-height:320px;
+      overflow:auto;
+      white-space: pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+      margin-top:8px;
+    }
+
+    @media (max-width:700px) {
+      .group-header { flex-wrap:wrap; align-items:flex-start; gap:8px; }
+      .group-header .group-name { min-width: 140px; }
+      .card { padding:18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="title-row">
+      <i class="fa-solid fa-crown" style="font-size:36px; color:#FFCA30; filter: drop-shadow(0 0 8px rgba(255,202,48,0.25));"></i>
+      <h1>Crear nuevo JSON</h1>
+      <div class="subtitle">Crea grupos (ítems) con varios campos. El JSON se actualiza en vivo.</div>
+    </div>
+
+    <div style="display:flex;gap:10px; justify-content:center; margin-top:18px; margin-bottom:18px; flex-wrap:wrap;">
+      <button id="addGroupBtn" class="btn-twis"><i class="fa-solid fa-layer-group"></i> Agregar grupo</button>
+    </div>
+
+    <div id="groupsContainer"></div>
+
+    <div style="margin-top:18px;">
+      <h2 style="margin:0 0 8px 0; font-size:1rem; color:#fff;">Vista previa del JSON</h2>
+      <pre id="jsonOutput">{}</pre>
+    </div>
+
+    <!-- Botones movidos aquí -->
+    <div style="display:flex;gap:10px; justify-content:center; margin-top:18px; flex-wrap:wrap;">
+      <button id="copyBtn" class="btn-twis"><i class="fa-solid fa-copy"></i> Copiar JSON</button>
+      <button id="downloadBtn" class="btn-twis"><i class="fa-solid fa-download"></i> Descargar JSON</button>
+    </div>
+  </div>
+
+  <footer style="text-align:center; margin-top:18px; color:#9aa0b4;">
+    © 2025 <span style="color:#FFCA30; font-weight:600;">Twis API</span> • Desarrollado por TwisSpark
+  </footer>
+
+  <script>
+    const groupsContainer = document.getElementById('groupsContainer');
+    const addGroupBtn = document.getElementById('addGroupBtn');
+    const jsonOutput = document.getElementById('jsonOutput');
+    const copyBtn = document.getElementById('copyBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    function createGroup() {
+      const group = document.createElement('div');
+      group.className = 'group';
+      group.innerHTML = `
+        <div class="group-header">
+          <span class="label">Nombre del grupo</span>
+          <input type="text" class="group-name" placeholder="Nombre del grupo (ej: Ítem 1)" />
+          <button class="remove-group" title="Eliminar grupo"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        <div class="fields"></div>
+        <div style="margin-top:10px;">
+          <button class="btn-twis add-field" type="button"><i class="fa-solid fa-plus"></i> Agregar valor</button>
+        </div>
+      `;
+
+      const removeGroupBtn = group.querySelector('.remove-group');
+      const addFieldBtn = group.querySelector('.add-field');
+      const fields = group.querySelector('.fields');
+
+      addFieldBtn.addEventListener('click', () => {
+        createField(fields);
+        updateJSON();
+        const last = fields.querySelectorAll('.field input.input-key');
+        if (last.length) last[last.length - 1].focus();
+      });
+
+      removeGroupBtn.addEventListener('click', () => {
+        group.classList.add('fade-out');
+        setTimeout(() => {
+          group.remove();
+          updateJSON();
+        }, 320);
+      });
+
+      group.addEventListener('input', () => updateJSON());
+      groupsContainer.appendChild(group);
+      return group;
+    }
+
+    function createField(container) {
+      const field = document.createElement('div');
+      field.className = 'field';
+      field.innerHTML = `
+        <input type="text" class="input-key" placeholder="Clave (ej: Nombre)" />
+        <input type="text" class="input-value" placeholder="Valor (ej: Papa)" />
+        <div class="field-actions"><button class="remove-field" title="Eliminar campo"><i class="fa-solid fa-xmark"></i></button></div>
+      `;
+
+      const remBtn = field.querySelector('.remove-field');
+      remBtn.addEventListener('click', () => {
+        field.style.transition = 'opacity .20s ease, transform .20s ease';
+        field.style.opacity = '0';
+        field.style.transform = 'translateY(6px)';
+        setTimeout(() => {
+          field.remove();
+          updateJSON();
+        }, 220);
+      });
+
+      container.appendChild(field);
+      return field;
+    }
+
+    function updateJSON() {
+      const out = [];
+      document.querySelectorAll('.group').forEach(group => {
+        const name = (group.querySelector('.group-name').value || '').trim();
+        const fields = group.querySelectorAll('.field');
+        const obj = {};
+        fields.forEach(f => {
+          const k = (f.querySelector('.input-key').value || '').trim();
+          const v = (f.querySelector('.input-value').value || '').trim();
+          if (k) obj[k] = v;
+        });
+        if (Object.keys(obj).length > 0) {
+          out.push({ [name || 'Sin nombre']: obj });
+        }
+      });
+      jsonOutput.textContent = out.length ? JSON.stringify(out, null, 2) : '[]';
+    }
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(jsonOutput.textContent || '');
+        const prev = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado';
+        setTimeout(() => copyBtn.innerHTML = prev, 1400);
+      } catch {
+        alert('No se pudo copiar');
+      }
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      const txt = jsonOutput.textContent;
+      if (!txt || txt.trim() === '[]') return alert('No hay datos para descargar');
+      const blob = new Blob([txt], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'data.json';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+    });
+
+    addGroupBtn.addEventListener('click', () => {
+      const g = createGroup();
+      const fields = g.querySelector('.fields');
+      createField(fields);
+      updateJSON();
+      g.querySelector('.group-name').focus();
+    });
+
+    (function init() {
+      addGroupBtn.click();
+    })();
+  </script>
+</body>
+</html>
