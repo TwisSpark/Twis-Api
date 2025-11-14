@@ -1,7 +1,7 @@
 {
-  "name": "Twis API",
+  "name": "Twis API — El Poder del Rey",
   "short_name": "TwisAPI",
-  "description": "Gestiona, sube y explora tus archivos JSON de forma moderna y rápida.",
+  "description": "La corona de herramientas que TwisSpark usa para crear, mejorar y dominar proyectos. Poder, velocidad y estilo de rey en un solo lugar.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#8c52ff",

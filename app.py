@@ -12,10 +12,10 @@ def index():
     return render_template('global/index.html')
 
 
-# 📤 Página para crear o subir JSON
-@app.route('/upload-json')
+# 📤 Página para crear o crear JSON
+@app.route('/create_json')
 def upload_json():
-    return render_template('generales/upload.html')
+    return render_template('generales/create_json.html')
 
 
 # 🧩 Rutas para servir archivos estáticos organizados

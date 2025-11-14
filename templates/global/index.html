@@ -3,28 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Twis API | Inicio</title>
 
-  <!-- Descripción general -->
-  <meta name="description" content="Gestiona, sube y explora tus archivos JSON de forma moderna y rápida.">
+  <!-- TÍTULO -->
+  <title>Twis API — Bienvenidos </title>
+
+  <!-- DESCRIPCIÓN SEO -->
+  <meta name="description" content="La corona de herramientas que TwisSpark usa para crear, mejorar y dominar proyectos. Poder, velocidad y estilo de rey en un solo lugar.">
+
+  <!-- SEO GENERAL -->
   <meta name="author" content="TwisSpark">
-  <meta name="keywords" content="JSON, API, Twis API, herramientas, Discord">
+  <meta name="keywords" content="Twis API, TwisSpark, herramientas, proyectos, gestión, desarrollo">
 
-  <!-- Open Graph / Facebook -->
-  <meta property="og:title" content="Twis API" />
-  <meta property="og:description" content="Gestiona, sube y explora tus archivos JSON de forma moderna y rápida." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://twisapi.vercel.app/static/avatar.png" />
-  <meta property="og:image:width" content="400" />
-  <meta property="og:image:height" content="400" />
+  <!-- OPEN GRAPH -->
+  <meta property="og:title" content="Twis API — Bienvenidos">
+  <meta property="og:description" content="La corona de herramientas que TwisSpark usa para crear, mejorar y dominar proyectos. Poder, velocidad y estilo de rey en un solo lugar.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/static/avatar.png">
+  <meta property="og:url" content="https://twisapi.com">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Twis API" />
-  <meta name="twitter:description" content="Gestiona, sube y explora tus archivos JSON de forma moderna y rápida." />
-  <meta name="twitter:image" content="https://twisapi.vercel.app/static/avatar.png" />
+  <!-- TWITTER -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Twis API — Bienvenidos">
+  <meta name="twitter:description" content="La corona de herramientas que TwisSpark usa para crear, mejorar y dominar proyectos. Poder, velocidad y estilo de rey en un solo lugar.">
+  <meta name="twitter:image" content="/static/avatar.png">
 
-  <link rel="canonical" href="https://twisapi.vercel.app/" />
+  <!-- CANONICAL -->
+  <link rel="canonical" href="https://twisapi.com">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/static/avatar.png">
+  <link rel="apple-touch-icon" href="/static/avatar.png">
 
   <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -32,60 +41,74 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-  <!-- CSS Global y Específico -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/global/style.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/generales/upload.css') }}">
-
   <style>
     body {
       background-color: #000;
       color: #fff;
       font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
     }
 
-    /* ✨ Animación de brillo dorado en la corona */
+    /* 🌟 Fondo con partículas doradas */
+    body::before {
+      content: '';
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background: radial-gradient(circle, rgba(255,202,48,0.2) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: move 60s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes move {
+      0% {background-position:0 0;}
+      100% {background-position:1000px 1000px;}
+    }
+
+    /* 💎 Animación corona */
     @keyframes shine {
-      0% { filter: drop-shadow(0 0 3px #ffca30) brightness(1); }
-      50% { filter: drop-shadow(0 0 10px #ffca30) brightness(1.3); }
-      100% { filter: drop-shadow(0 0 3px #ffca30) brightness(1); }
+      0%, 100% { filter: drop-shadow(0 0 3px #ffca30) brightness(1); }
+      50% { filter: drop-shadow(0 0 15px #ffca30) brightness(1.5); }
     }
 
     .shine {
-      animation: shine 2.5s infinite ease-in-out;
+      animation: shine 2s infinite ease-in-out;
     }
 
-    /* 💜 Estilo de la tarjeta */
+    /* Tarjeta principal */
     .card {
       background: #111;
-      border: 2px solid #8c52ff; /* línea violeta */
-      border-radius: 1.25rem;
-      box-shadow: 0 0 20px rgba(140, 82, 255, 0.3);
-      transition: all 0.3s ease-in-out;
+      border: 2px solid #8c52ff;
+      border-radius: 2rem;
+      box-shadow: 0 0 25px rgba(140, 82, 255, 0.3);
+      padding: 3rem;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 30px rgba(140, 82, 255, 0.5);
+      transform: translateY(-6px);
+      box-shadow: 0 0 50px rgba(140, 82, 255, 0.7);
     }
 
-    /* 💜 Botones personalizados (Twis Spark Style) */
+    /* Botones TwisSpark */
     .btn-twis {
       background-color: #8c52ff;
-      border-bottom: 4px solid #8c52ff; /* línea violeta actualizada */
+      border-bottom: 4px solid #6b3bcc;
       color: #fff;
+      padding: 0.7rem 1.8rem;
+      border-radius: 12px;
+      font-weight: 600;
       transition: all 0.2s ease;
-      border-radius: 10px;
-      padding: 0.5rem 1.5rem;
     }
 
     .btn-twis:hover {
-      filter: brightness(1.15);
+      filter: brightness(1.2);
       transform: translateY(-2px);
       border-bottom-width: 6px;
     }
 
     .btn-twis:active {
-      filter: brightness(0.9);
+      filter: brightness(0.85);
       transform: translateY(2px);
       border-bottom-width: 2px;
     }
@@ -94,38 +117,38 @@
 
 <body class="flex flex-col items-center justify-center min-h-screen text-center px-6">
 
-  <!-- Contenedor principal -->
-  <div class="card p-8 max-w-lg w-full">
+  <!-- CONTENEDOR PRINCIPAL -->
+  <div class="card max-w-lg w-full">
 
-    <!-- Encabezado -->
-    <div class="flex flex-col items-center mb-6">
-      <i class="fa-solid fa-crown text-5xl mb-2 shine" style="color: #FFCA30;"></i>
+    <!-- HEADER -->
+    <div class="flex flex-col items-center mb-8">
+      <i class="fa-solid fa-crown text-6xl mb-4 shine" style="color: #FFCA30;"></i>
       <h1 class="text-3xl font-bold leading-tight">
         Bienvenidos a<br>
         <span style="color: #FFCA30;" class="text-4xl font-extrabold">Twis API</span>
       </h1>
     </div>
 
-    <p class="text-sm text-gray-400 mb-8">
-      Gestiona, sube y explora tus archivos JSON de forma moderna, rápida y con estilo.
+    <!-- DESCRIPCIÓN -->
+    <p class="text-sm text-gray-300 mb-10">
+      La corona de herramientas que TwisSpark usa para crear, mejorar y dominar proyectos.<br>
+      Poder, velocidad y estilo de rey en un solo lugar
     </p>
 
-    <!-- Botones -->
-    <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <a href="/upload-json">
+    <!-- BOTONES -->
+    <div class="flex flex-col sm:flex-row justify-center gap-5">
+      <a href="/create_json">
         <button class="btn-twis w-full flex items-center justify-center gap-2">
           <i class="fa-solid fa-upload"></i>
           Crear JSON
         </button>
       </a>
-
-      <a href="/ver">
+      <a href="/explorar">
         <button class="btn-twis w-full flex items-center justify-center gap-2">
           <i class="fa-solid fa-folder-open"></i>
-          Ver Archivos
+          Ver Proyectos 
         </button>
       </a>
-
       <a href="/api/info">
         <button class="btn-twis w-full flex items-center justify-center gap-2">
           <i class="fa-solid fa-code"></i>
@@ -133,10 +156,11 @@
         </button>
       </a>
     </div>
+
   </div>
 
-  <!-- Footer -->
-  <p class="text-gray-500 text-sm mt-8">
+  <!-- FOOTER -->
+  <p class="text-gray-500 text-sm mt-10">
     © 2025 <span style="color: #FFCA30;" class="font-semibold">Twis API</span> • Desarrollado por TwisSpark ⚡
   </p>
 
