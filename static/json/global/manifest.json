@@ -4,7 +4,7 @@
   "description": "Gestiona, sube y explora tus archivos JSON de forma moderna y rápida.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
+  "background_color": "#8c52ff",
   "theme_color": "#8c52ff",
   "icons": [
     {
