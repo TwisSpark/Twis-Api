@@ -15,8 +15,6 @@
   <meta property="og:description" content="Gestiona, sube y explora tus archivos JSON de forma moderna y rápida." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://twisapi.vercel.app/static/avatar.png" />
-  <meta property="og:image:width" content="400" />
-  <meta property="og:image:height" content="400" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -24,7 +22,8 @@
   <meta name="twitter:description" content="Gestiona, sube y explora tus archivos JSON de forma moderna y rápida." />
   <meta name="twitter:image" content="https://twisapi.vercel.app/static/avatar.png" />
 
-  <link rel="canonical" href="https://twisapi.vercel.app/" />
+  <!-- Manifest para PWA -->
+  <link rel="manifest" href="{{ url_for('static', filename='json/global/manifest.json') }}">
 
   <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -32,7 +31,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-  <!-- CSS Global y Específico -->
+  <!-- 🔗 CSS Global y Específico -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/global/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/generales/upload.css') }}">
 
@@ -57,7 +56,7 @@
     /* 💜 Estilo de la tarjeta */
     .card {
       background: #111;
-      border: 2px solid #8c52ff; /* línea violeta */
+      border: 2px solid #8c52ff;
       border-radius: 1.25rem;
       box-shadow: 0 0 20px rgba(140, 82, 255, 0.3);
       transition: all 0.3s ease-in-out;
@@ -71,7 +70,7 @@
     /* 💜 Botones personalizados (Twis Spark Style) */
     .btn-twis {
       background-color: #8c52ff;
-      border-bottom: 4px solid #8c52ff; /* línea violeta actualizada */
+      border-bottom: 4px solid #6b3bcc;
       color: #fff;
       transition: all 0.2s ease;
       border-radius: 10px;
@@ -115,7 +114,7 @@
       <a href="/upload-json">
         <button class="btn-twis w-full flex items-center justify-center gap-2">
           <i class="fa-solid fa-upload"></i>
-          Crear JSON
+          Subir JSON
         </button>
       </a>
 
