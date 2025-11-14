@@ -1,9 +1,31 @@
 {
-  "redirects": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/",
-      "destination": "",
-      "permanent": true
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/css/(.*)",
+      "dest": "/static/css/$1"
+    },
+    {
+      "src": "/static/js/(.*)",
+      "dest": "/static/js/$1"
+    },
+    {
+      "src": "/static/imagenes/(.*)",
+      "dest": "/static/imagenes/$1"
+    },
+    {
+      "src": "/static/json/(.*)",
+      "dest": "/static/json/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "app.py"
     }
   ]
 }
