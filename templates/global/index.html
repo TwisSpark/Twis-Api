@@ -15,6 +15,16 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/global/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/generales/upload.css') }}">
 
+  <!-- PWA manifest -->
+  <link rel="manifest" href="{{ url_for('static', filename='json/global/manifest.json') }}" />
+
+  <!-- Meta para redes sociales -->
+  <meta property="og:title" content="Twis API">
+  <meta property="og:description" content="Gestiona, sube y explora tus archivos JSON de forma moderna, rápida y con estilo.">
+  <meta property="og:image" content="{{ url_for('static', filename='imagenes/global/avatar.png') }}">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#8c52ff">
+
   <style>
     body {
       background-color: #000;
