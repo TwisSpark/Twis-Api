@@ -75,7 +75,7 @@ def serve_generales_img(filename):
 # 🧠 Página 404 personalizada (opcional)
 @app.errorhandler(404)
 def not_found(e):
-    return "<h2 style='font-family:sans-serif;text-align:center;margin-top:50px'>❌ Página no encontrada</h2>", 404
+    return "<h2 style='font-family:sans-serif;text-align:center;margin-top:50px'>❌ Página no encontrada en la página </h2>", 404
 
 
 # 🚀 Inicio del servidor
