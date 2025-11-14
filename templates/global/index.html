@@ -5,80 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Twis API | Inicio</title>
 
+  <!-- Meta tags existentes -->
+  <meta name="description" content="Gestiona, sube y explora tus archivos JSON de forma moderna, rápida y con estilo." />
+  <meta name="author" content="Twis API" />
+  <meta name="keywords" content="twis api, json, upload json, gestionar archivos, api web" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Twis API" />
+  <meta property="og:description" content="Gestiona, sube y explora tus archivos JSON de forma moderna, rápida y con estilo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://twisapi.vercel.app/static/imagenes/global/avatar.png" />
+  <meta property="og:image:width" content="400" />
+  <meta property="og:image:height" content="400" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Twis API" />
+  <meta name="twitter:description" content="Gestiona, sube y explora tus archivos JSON de forma moderna, rápida y con estilo." />
+  <meta name="twitter:image" content="https://twisapi.vercel.app/static/imagenes/global/avatar.png" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://twisapi.vercel.app/" />
+
   <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-  <!-- 🔗 CSS Global y Específico -->
+  <!-- CSS Global y Específico -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/global/style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/generales/upload.css') }}">
 
-  <!-- PWA manifest -->
-  <link rel="manifest" href="{{ url_for('static', filename='json/global/manifest.json') }}" />
-
-  <!-- Meta para redes sociales -->
-  <meta property="og:title" content="Twis API">
-  <meta property="og:description" content="Gestiona, sube y explora tus archivos JSON de forma moderna, rápida y con estilo.">
-  <meta property="og:image" content="{{ url_for('static', filename='imagenes/global/avatar.png') }}">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#8c52ff">
-
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    /* ✨ Animación de brillo dorado en la corona */
-    @keyframes shine {
-      0% { filter: drop-shadow(0 0 3px #ffca30) brightness(1); }
-      50% { filter: drop-shadow(0 0 10px #ffca30) brightness(1.3); }
-      100% { filter: drop-shadow(0 0 3px #ffca30) brightness(1); }
-    }
-
-    .shine {
-      animation: shine 2.5s infinite ease-in-out;
-    }
-
-    /* 💜 Estilo de la tarjeta */
-    .card {
-      background: #111;
-      border: 2px solid #8c52ff;
-      border-radius: 1.25rem;
-      box-shadow: 0 0 20px rgba(140, 82, 255, 0.3);
-      transition: all 0.3s ease-in-out;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 30px rgba(140, 82, 255, 0.5);
-    }
-
-    /* 💜 Botones personalizados (Twis Spark Style) */
-    .btn-twis {
-      background-color: #8c52ff;
-      border-bottom: 4px solid #6b3bcc;
-      color: #fff;
-      transition: all 0.2s ease;
-      border-radius: 10px;
-      padding: 0.5rem 1.5rem;
-    }
-
-    .btn-twis:hover {
-      filter: brightness(1.15);
-      transform: translateY(-2px);
-      border-bottom-width: 6px;
-    }
-
-    .btn-twis:active {
-      filter: brightness(0.9);
-      transform: translateY(2px);
-      border-bottom-width: 2px;
-    }
-  </style>
 </head>
 
 <body class="flex flex-col items-center justify-center min-h-screen text-center px-6">
@@ -122,6 +80,7 @@
         </button>
       </a>
     </div>
+
   </div>
 
   <!-- Footer -->
