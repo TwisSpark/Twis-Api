@@ -1,6 +1,7 @@
 {
   "name": "Twis API",
   "short_name": "TwisAPI",
+  "description": "Gestiona, sube y explora tus archivos JSON de forma moderna y rápida.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
